@@ -1,0 +1,132 @@
+.searchBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 200;
+    font-size: 3em;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    background: #EDA639;
+}
+
+.titleBox {
+    width: 40%;
+    color: black;
+}
+#logo {
+    text-align: center;
+    margin: auto;
+    font-size: 100px;
+    font-family: 'Bungee Shade', cursive;
+}
+#definition {
+    text-align: center;
+    font-size: 20px;
+}
+
+
+.searchContainer {
+    margin-left: 10px;
+}
+.mainSearch {
+    font-size: 1em;
+}
+.searchError {
+    font-size: 16px;
+    color: #d31b21;
+}
+
+.shadow {
+    border-radius: 3px;
+    -webkit-box-shadow: 4px 4px 10px 0px rgba(194,194,194,1);
+    -moz-box-shadow: 4px 4px 10px 0px rgba(194,194,194,1);
+    box-shadow: 4px 4px 10px 0px rgba(194,194,194,1);
+}
+
+body {
+    background: #f5ede3;
+    color: #292f33;
+    font-family: 'Open Sans', sans-serif;
+}
+
+input[type=text] {
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #d31b21;
+    background-color: #EDA639;
+    color: black;
+    width: 500px; 
+}
+input[type=text]:focus {
+    outline: none;
+}
+::-webkit-input-placeholder {
+   color: black;
+}
+:-moz-placeholder { /* Firefox 18- */
+   color: black;  
+}
+::-moz-placeholder {  /* Firefox 19+ */
+   color: black;  
+}
+:-ms-input-placeholder {  
+   color: black;  
+}
+
+a {
+    color: #d31b21;
+}
+a:visited {
+    color: #e64a2d;
+}
+
+
+.contentContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+
+.sidebar {
+    padding: 10px;
+    width: 30%;
+    background: #EDA639;
+    margin-right: 20px;
+}
+.sidebar img {
+    width: 100%;
+    border: 1px solid black;
+    margin-right: auto;
+    margin-left: auto;
+}
+.sidebar p {
+    font-size: 3em;
+}
+#userName {
+    font-size: 60px;
+}
+#userUrl {
+    font-size: 20px;
+}
+
+.timeline {
+    padding: 10px;
+}
+
+.twitCard {
+    padding: 10px;
+    margin-bottom: 20px;
+    background: #EDA639;
+}
+
+.twitCardHeadline {
+
+}
+
+.twitCardBody {
+    font-size: 36;
+    padding-left: 20px;
+}
