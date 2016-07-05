@@ -7,14 +7,7 @@ var SearchBox = React.createClass({
     getInitialState: function() {
         return {
             error: false,
-            user: {
-                "avatar_url": "https://avatars.githubusercontent.com/u/8053315?v=3",
-                "html_url": "https://github.com/rgscherf",
-                "login": "rgscherf",
-                "name": "Rob Scherf",
-                "public_repos": 14,
-                "commits": {}
-            }
+            user: {}
         };
     },
     keyDown: function(e) {
@@ -33,14 +26,12 @@ var SearchBox = React.createClass({
             contentType: "application/json; charset=utf-8",
             data: { user: query },
             success: function(data) {
-                console.log("AJAX success");
                 this.setState({
                     user: data,
                     error: false
                 });
             }.bind(this),
             error: function(xhr, status, err) {
-                console.log("AJAX failure");
                 this.setState({
                     error: true
                 });
@@ -57,7 +48,7 @@ var SearchBox = React.createClass({
                             Twit 
                         </div>   
                         <div id = "definition"> 
-                            <i> V.to taunt or ridicule <br /> with reference to anything embarrassing </i> 
+                            <i> V. to taunt or ridicule <br /> with reference to anything embarrassing </i> 
                         </div> 
                     </div> 
                     <div className = "searchContainer"> 

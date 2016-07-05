@@ -4,19 +4,12 @@
 // Timeline displays most recent commits for user
 
 var SearchBox = React.createClass({
-    displayName: "SearchBox",
+    displayName: 'SearchBox',
 
     getInitialState: function () {
         return {
             error: false,
-            user: {
-                "avatar_url": "https://avatars.githubusercontent.com/u/8053315?v=3",
-                "html_url": "https://github.com/rgscherf",
-                "login": "rgscherf",
-                "name": "Rob Scherf",
-                "public_repos": 14,
-                "commits": {}
-            }
+            user: {}
         };
     },
     keyDown: function (e) {
@@ -35,14 +28,12 @@ var SearchBox = React.createClass({
             contentType: "application/json; charset=utf-8",
             data: { user: query },
             success: function (data) {
-                console.log("AJAX success");
                 this.setState({
                     user: data,
                     error: false
                 });
             }.bind(this),
             error: function (xhr, status, err) {
-                console.log("AJAX failure");
                 this.setState({
                     error: true
                 });
@@ -52,45 +43,45 @@ var SearchBox = React.createClass({
     render: function () {
         var err = this.state.error ? "Could not find that github user!" : "";
         return React.createElement(
-            "div",
+            'div',
             null,
             React.createElement(
-                "div",
-                { className: "searchBox shadow" },
+                'div',
+                { className: 'searchBox shadow' },
                 React.createElement(
-                    "div",
-                    { className: "titleBox" },
+                    'div',
+                    { className: 'titleBox' },
                     React.createElement(
-                        "div",
-                        { id: "logo" },
-                        "Twit"
+                        'div',
+                        { id: 'logo' },
+                        'Twit'
                     ),
                     React.createElement(
-                        "div",
-                        { id: "definition" },
+                        'div',
+                        { id: 'definition' },
                         React.createElement(
-                            "i",
+                            'i',
                             null,
-                            " V.to taunt or ridicule ",
-                            React.createElement("br", null),
-                            " with reference to anything embarrassing "
+                            ' V. to taunt or ridicule ',
+                            React.createElement('br', null),
+                            ' with reference to anything embarrassing '
                         )
                     )
                 ),
                 React.createElement(
-                    "div",
-                    { className: "searchContainer" },
-                    React.createElement("input", { type: "text",
-                        placeholder: "Find github user to twit",
-                        className: "mainSearch",
+                    'div',
+                    { className: 'searchContainer' },
+                    React.createElement('input', { type: 'text',
+                        placeholder: 'Find github user to twit',
+                        className: 'mainSearch',
                         onKeyDown: this.keyDown
                     }),
                     React.createElement(
-                        "div",
-                        { className: "searchError" },
-                        " ",
+                        'div',
+                        { className: 'searchError' },
+                        ' ',
                         err,
-                        " "
+                        ' '
                     )
                 )
             ),
@@ -100,12 +91,12 @@ var SearchBox = React.createClass({
 });
 
 var ContentContainer = React.createClass({
-    displayName: "ContentContainer",
+    displayName: 'ContentContainer',
 
     render: function () {
         return React.createElement(
-            "div",
-            { className: "contentContainer" },
+            'div',
+            { className: 'contentContainer' },
             React.createElement(Sidebar, { user: this.props.user }),
             React.createElement(Timeline, { commits: this.props.user.commits })
         );
@@ -113,40 +104,40 @@ var ContentContainer = React.createClass({
 });
 
 var Sidebar = React.createClass({
-    displayName: "Sidebar",
+    displayName: 'Sidebar',
 
     render: function () {
         return React.createElement(
-            "div",
-            { className: "sideBar shadow" },
-            React.createElement("img", { src: this.props.user.avatar_url }),
+            'div',
+            { className: 'sideBar shadow' },
+            React.createElement('img', { src: this.props.user.avatar_url }),
             React.createElement(
-                "div",
+                'div',
                 null,
                 React.createElement(
-                    "span",
-                    { id: "userName" },
-                    " ",
+                    'span',
+                    { id: 'userName' },
+                    ' ',
                     this.props.user.name,
-                    " "
+                    ' '
                 )
             ),
             React.createElement(
-                "div",
+                'div',
                 null,
                 React.createElement(
-                    "span",
-                    { id: "userUrl" },
+                    'span',
+                    { id: 'userUrl' },
                     React.createElement(
-                        "a",
+                        'a',
                         { href: this.props.user.html_url },
-                        " ",
+                        ' ',
                         this.props.user.login,
-                        " "
+                        ' '
                     ),
-                    " - ",
+                    ' - ',
                     this.props.user.public_repos,
-                    " public repos"
+                    ' public repos'
                 )
             )
         );
@@ -154,7 +145,7 @@ var Sidebar = React.createClass({
 });
 
 var Timeline = React.createClass({
-    displayName: "Timeline",
+    displayName: 'Timeline',
 
     render: function () {
         var a = $.map(this.props.commits, function (e) {
@@ -162,37 +153,37 @@ var Timeline = React.createClass({
         });
         var c = $.map(a, function (elem) {
             return React.createElement(
-                "div",
-                { className: "twitCard shadow" },
+                'div',
+                { className: 'twitCard shadow' },
                 React.createElement(
-                    "div",
-                    { className: "twitCardHeadline" },
-                    "Commit to ",
+                    'div',
+                    { className: 'twitCardHeadline' },
+                    'Commit to ',
                     React.createElement(
-                        "a",
+                        'a',
                         { href: elem.repo_url },
-                        " ",
+                        ' ',
                         elem.repo_name,
-                        " "
+                        ' '
                     ),
-                    " at ",
+                    ' at ',
                     React.createElement(
-                        "a",
+                        'a',
                         { href: elem.commit_url },
-                        " ",
+                        ' ',
                         elem.timestamp_pretty
                     )
                 ),
                 React.createElement(
-                    "div",
-                    { className: "twitCardBody" },
+                    'div',
+                    { className: 'twitCardBody' },
                     elem.message
                 )
             );
         });
         return React.createElement(
-            "div",
-            { className: "timeline" },
+            'div',
+            { className: 'timeline' },
             c
         );
     }
