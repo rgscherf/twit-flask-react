@@ -29,20 +29,23 @@ var SearchBox = React.createClass({
         this.loadCommentsFromServer('rgscherf');
     },
     loadCommentsFromServer: function (query) {
-        // var u = 'http://localhost:5000/index.php/twit/' + query;
-        var u = 'https://phptwit.herokuapp.com/index.php/twit/' + query;
-        $.ajax(u, {
-            type: 'POST',
-            dataType: 'json',
-            crossDomain: true,
-            contentType: "application/x-www-form-urlencoded",
-            cache: false,
+        $.ajax({
+            type: 'GET',
+            url: $SCRIPT_ROOT + '/get_user', // $SCRIPT_ROOT defined in index.html
+            contentType: "application/json; charset=utf-8",
+            data: { user: query },
             success: function (data) {
-                this.setState({ user: data, error: false });
+                console.log("AJAX success");
+                this.setState({
+                    user: data,
+                    error: false
+                });
             }.bind(this),
             error: function (xhr, status, err) {
-                console.log(xhr);
-                this.setState({ error: true });
+                console.log("AJAX failure");
+                this.setState({
+                    error: true
+                });
             }.bind(this)
         });
     },
@@ -68,9 +71,9 @@ var SearchBox = React.createClass({
                         React.createElement(
                             "i",
                             null,
-                            "V.  to taunt or ridicule ",
+                            " V.to taunt or ridicule ",
                             React.createElement("br", null),
-                            "with reference to anything embarrassing"
+                            " with reference to anything embarrassing "
                         )
                     )
                 ),
@@ -80,18 +83,20 @@ var SearchBox = React.createClass({
                     React.createElement("input", { type: "text",
                         placeholder: "Find github user to twit",
                         className: "mainSearch",
-                        onKeyDown: this.keyDown }),
+                        onKeyDown: this.keyDown
+                    }),
                     React.createElement(
                         "div",
                         { className: "searchError" },
-                        err
+                        " ",
+                        err,
+                        " "
                     )
                 )
             ),
             React.createElement(ContentContainer, { user: this.state.user })
         );
     }
-
 });
 
 var ContentContainer = React.createClass({
@@ -121,7 +126,9 @@ var Sidebar = React.createClass({
                 React.createElement(
                     "span",
                     { id: "userName" },
-                    this.props.user.name
+                    " ",
+                    this.props.user.name,
+                    " "
                 )
             ),
             React.createElement(
@@ -133,7 +140,9 @@ var Sidebar = React.createClass({
                     React.createElement(
                         "a",
                         { href: this.props.user.html_url },
-                        this.props.user.login
+                        " ",
+                        this.props.user.login,
+                        " "
                     ),
                     " - ",
                     this.props.user.public_repos,
@@ -162,19 +171,22 @@ var Timeline = React.createClass({
                     React.createElement(
                         "a",
                         { href: elem.repo_url },
-                        elem.repo_name
+                        " ",
+                        elem.repo_name,
+                        " "
                     ),
                     " at ",
                     React.createElement(
                         "a",
                         { href: elem.commit_url },
-                        elem.created_at
+                        " ",
+                        elem.timestamp_pretty
                     )
                 ),
                 React.createElement(
                     "div",
                     { className: "twitCardBody" },
-                    elem.commit_message
+                    elem.message
                 )
             );
         });

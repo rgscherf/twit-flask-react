@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>Twit - a timeline for github commits</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <script type="text/javascript" src="{{ url_for('static', filename='bower_components/react/react.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='bower_components/react/react-dom.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
+        <link href="https://fonts.googleapis.com/css?family=Bungee+Shade|Open+Sans:300i,400" rel="stylesheet">
+        <script type=text/javascript>
+        var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+        </script>
+    </head>
+    <body>
+        <div id="app">
+        </div>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/twit.js') }}"></script>
+    </body>
+</html>
